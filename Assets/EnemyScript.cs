@@ -3,6 +3,9 @@ using System.Collections;
 
 public class EnemyScript : MonoBehaviour {
 
+	public float impulseUp;
+	public float impulseBack;
+	
 	// Use this for initialization
 	void Start () {
 	
@@ -16,7 +19,7 @@ public class EnemyScript : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col){
 		if(col.gameObject.tag == "Player")
 		{
-			col.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-900.0f, 400.0f), ForceMode2D.Force);
+			col.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-impulseBack, impulseUp), ForceMode2D.Impulse);
 			Physics2D.IgnoreCollision(col.collider, GetComponent<BoxCollider2D>());
 		}
 	}
