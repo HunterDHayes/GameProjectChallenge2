@@ -18,8 +18,14 @@ public class PlayerMovement : MonoBehaviour {
 	public float knockBackCount = 3;
 	public float currKnockBack = 0;
 
+	public bool hasThePower = false;
+	public float starPowerDuration = 3.0f;
+	public float starPowerTimer = 0.0f;
+
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
+
 	}
 	
 	// Update is called once per frame
@@ -28,7 +34,15 @@ public class PlayerMovement : MonoBehaviour {
 		Vector3 position = this.transform.position;
 		position.x = Mathf.Lerp (this.transform.position.x, (-7.5f) * (this.currKnockBack / this.knockBackCount), Time.deltaTime * 2.0f);
 		this.transform.position = position;
-		
+
+		if (this.starPowerTimer > 0.0f) {
+			this.starPowerTimer -= Time.deltaTime;
+
+			if (this.starPowerTimer <= 0.0f) {
+				this.hasThePower = false;
+				//this.gameObject.GetComponent<SpriteRenderer> ().color = Color.white;
+			}
+		}
 		if (Input.GetKeyDown (KeyCode.K))
 			this.KnockBack ();
 
@@ -86,5 +100,12 @@ public class PlayerMovement : MonoBehaviour {
 	public void HealthUp()
 	{
 		this.currKnockBack = Mathf.Max (0.0f, this.currKnockBack - 1.0f);
+	}
+
+	public void StarPower()
+	{
+		this.starPowerTimer = this.starPowerDuration;
+		this.hasThePower = true;
+		//this.gameObject.GetComponent<SpriteRenderer> ().color = Color.yellow;
 	}
 }

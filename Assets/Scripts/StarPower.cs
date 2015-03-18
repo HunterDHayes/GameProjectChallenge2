@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HealthUP : MonoBehaviour {
+public class StarPower : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +16,7 @@ public class HealthUP : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col){
 		if(col.gameObject.tag == "Player")
 		{
-			col.gameObject.GetComponent<PlayerMovement>().HealthUp();
+			col.gameObject.GetComponent<PlayerMovement>().StarPower();
 			Destroy(this.gameObject);
 		}
 	}
