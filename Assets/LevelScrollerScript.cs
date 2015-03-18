@@ -17,7 +17,7 @@ public class LevelScrollerScript : MonoBehaviour {
 	void Update () {
 		for(int i = 0; i < transform.childCount; i++)
 		{
-			transform.GetChild(i).position -= new Vector3(scrollSpeed, 0.0f, 0.0f);
+			transform.GetChild(i).position -= new Vector3(scrollSpeed * Time.deltaTime, 0.0f, 0.0f);
 		}
 		
 		//Check if need to spawn new floor
