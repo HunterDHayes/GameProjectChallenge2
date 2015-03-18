@@ -13,7 +13,8 @@ public class EnemyScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(transform.position.y < -100.0f)
+			Destroy(gameObject);
 	}
 	
 	void OnCollisionEnter2D(Collision2D col){
