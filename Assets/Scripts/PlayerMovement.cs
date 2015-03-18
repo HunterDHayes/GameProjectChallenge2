@@ -24,7 +24,14 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+		Vector3 position = this.transform.position;
+		position.x = Mathf.Lerp (this.transform.position.x, (-7.5f) * (this.currKnockBack / this.knockBackCount), Time.deltaTime * 2.0f);
+		this.transform.position = position;
+		
+		if (Input.GetKeyDown (KeyCode.K))
+			this.KnockBack ();
+
 		float dAttack = Input.GetAxis("Jump");
 		
 		if(currAttackTime > 0.0f){
