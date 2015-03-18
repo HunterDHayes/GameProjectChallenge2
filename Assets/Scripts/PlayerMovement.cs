@@ -81,4 +81,9 @@ public class PlayerMovement : MonoBehaviour {
 			// TODO Do death stuff here
 		}
 	}
+
+	public void HealthUp()
+	{
+		this.currKnockBack = Mathf.Max (0.0f, this.currKnockBack - 1.0f);
+	}
 }
