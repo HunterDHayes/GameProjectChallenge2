@@ -14,7 +14,10 @@ public class CameraFollowScript : MonoBehaviour {
 		if(!player) player = GameObject.FindGameObjectWithTag("Player");
 		if(player)
 		{
-			
+			if(player.transform.position.x > transform.position.x)
+			{
+				transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+			}
 		}
 	}
 }
