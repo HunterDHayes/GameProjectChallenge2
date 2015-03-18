@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (this.currKnockBack >= this.knockBackCount) {
 			// TODO Do death stuff here
+			Application.LoadLevel("LoseMenu");
 		}
 	}
 
