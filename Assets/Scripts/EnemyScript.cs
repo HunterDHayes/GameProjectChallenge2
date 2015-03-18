@@ -23,4 +23,10 @@ public class EnemyScript : MonoBehaviour {
 			Physics2D.IgnoreCollision(col.collider, GetComponent<BoxCollider2D>());
 		}
 	}
+	
+	void OnTriggerEnter2D(Collider2D col){
+		if(col.gameObject.tag == "Weapon") {
+			GetComponent<BoxCollider2D>().isTrigger = true;
+		}
+	}
 }
