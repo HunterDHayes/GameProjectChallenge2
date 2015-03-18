@@ -15,8 +15,9 @@ public class LevelManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+
 		currentBlock = Instantiate (terrainBlocks [0], new Vector3(0.0f, yOffsetPerTile, 0.0f), new Quaternion(0, 0, 0, 0)) as GameObject;
-		nextBlock = Instantiate (terrainBlocks [1], new Vector3(xOffsetPerTile, yOffsetPerTile, 0.0f), new Quaternion(0, 0, 0, 0)) as GameObject;
+		nextBlock = Instantiate (terrainBlocks [1], new Vector3(terrainBlocks [1].transform.localScale.x, yOffsetPerTile, 0.0f), new Quaternion(0, 0, 0, 0)) as GameObject;
 
 		currentBlock.transform.SetParent (transform);
 		nextBlock.transform.SetParent (transform);
@@ -39,7 +40,7 @@ public class LevelManager : MonoBehaviour
 		}
 	
 
-		if (blockToCheck.transform.position.x <= -(xOffsetPerTile)) 
+		if (blockToCheck.transform.position.x <= -(blockToCheck.transform.localScale.x)) 
 		{
 			blockCounter++;
 			int visibletile = blockCounter % 2;
@@ -47,13 +48,13 @@ public class LevelManager : MonoBehaviour
 			if(visibletile == 0)
 			{
 				Destroy(currentBlock);
-				currentBlock = Instantiate (terrainBlocks [blockCounter % numBlocks], new Vector3(xOffsetPerTile, yOffsetPerTile, 0.0f), new Quaternion(0, 0, 0, 0)) as GameObject;
+				currentBlock = Instantiate (terrainBlocks [blockCounter % numBlocks], new Vector3(terrainBlocks [blockCounter % numBlocks].transform.localScale.x, yOffsetPerTile, 0.0f), new Quaternion(0, 0, 0, 0)) as GameObject;
 				currentBlock.transform.SetParent(transform);
 			}
 			else
 			{
 				Destroy(nextBlock);
-				nextBlock = Instantiate (terrainBlocks [blockCounter % numBlocks], new Vector3(xOffsetPerTile, yOffsetPerTile, 0.0f), new Quaternion(0, 0, 0, 0)) as GameObject;
+				nextBlock = Instantiate (terrainBlocks [blockCounter % numBlocks], new Vector3(terrainBlocks [blockCounter % numBlocks].transform.localScale.x, yOffsetPerTile, 0.0f), new Quaternion(0, 0, 0, 0)) as GameObject;
 				nextBlock.transform.SetParent(transform);
 			}
 
