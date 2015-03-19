@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
 				new Vector2(transform.position.x, transform.position.y)
 			);
 			
-			if(dY > 0.0f && hit.collider.gameObject != gameObject)
+			if(dY > 0.0f && hit.collider.gameObject != gameObject && hit.collider.gameObject.layer != LayerMask.GetMask("Ground"))
 			{
 				currJumpTime = jumpTime;
 				GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, dY * jumpImpulse), ForceMode2D.Impulse);
