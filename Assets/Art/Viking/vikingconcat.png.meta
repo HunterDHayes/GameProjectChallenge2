@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 096e3aeed57b87747b11324f31b37067
-timeCreated: 1426806845
+timeCreated: 1426807627
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -57,11 +57,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 7
-        width: 398
-        height: 439
+        y: 0
+        width: 393
+        height: 483
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: vikingconcat_1
       rect:
@@ -71,7 +71,7 @@ TextureImporter:
         width: 391
         height: 480
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: vikingconcat_2
       rect:
@@ -81,7 +81,7 @@ TextureImporter:
         width: 391
         height: 480
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: vikingconcat_3
       rect:
@@ -91,7 +91,7 @@ TextureImporter:
         width: 391
         height: 478
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
