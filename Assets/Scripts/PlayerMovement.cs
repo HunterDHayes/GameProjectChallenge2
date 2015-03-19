@@ -112,6 +112,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (this.currKnockBack >= this.knockBackCount) {
 			// TODO Do death stuff here
+			int deaths = PlayerPrefs.GetInt("TotalDeaths");
+			PlayerPrefs.SetInt("TotalDeaths",deaths + 1);
 			Application.LoadLevel("LoseMenu");
 		}
 	}
