@@ -17,11 +17,12 @@ public class PlayButton : MonoBehaviour {
 	
 	public void SwitchToGameplay()
 	{
+		if(levelToLoad == "Exit")
+		{
+			Application.Quit();
+			return;
+		}
+	
 		Application.LoadLevel(levelToLoad)	;
-	}
-
-	public void SwitchToCredits()
-	{
-		Application.LoadLevel("Credits")	;
 	}
 }
