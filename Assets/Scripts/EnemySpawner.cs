@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour {
 	public GameObject Player = null;
-	public GameObject EnemyTypeToSpawn = null;
+	public List<GameObject> enemiesToSpawn;
 	public Camera mainCamera = null;
 	
 	public float minSpawnTime;
@@ -24,11 +25,24 @@ public class EnemySpawner : MonoBehaviour {
 		currSpawnTime -= Time.deltaTime;
 		if (currSpawnTime <= 0.0f) 
 		{
+			GameObject NewObject = null;
+		
 			//actual instantiation goes here
-			GameObject NewObject = GameObject.Instantiate(EnemyTypeToSpawn);
-			Vector3 pos = new Vector3(mainCamera.transform.position.x + spawnLead,0.0f);
-			NewObject.transform.position = pos;
-
+			int num = Random.Range(0, 30);
+			
+			if(num < 10){
+				NewObject = GameObject.Instantiate(enemiesToSpawn[1]);
+				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,Random.Range(3.0f, 5.0f));
+			}
+			else if(num < 20) {
+				NewObject = GameObject.Instantiate(enemiesToSpawn[2]);
+				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,0.0f);
+			}
+			else {
+				NewObject = GameObject.Instantiate(enemiesToSpawn[0]);
+				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,0.0f);
+			}
+			
 			NewObject.transform.SetParent(transform);
 
 			currSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);

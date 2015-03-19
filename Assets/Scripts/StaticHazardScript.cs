@@ -1,21 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyScript : MonoBehaviour
-{
+public class StaticHazardScript : MonoBehaviour {
 
-	public float impulseUp;
-	public float impulseBack;
-	
+	public float impulseBack, impulseUp;
+
 	// Use this for initialization
-	void Start ()
-	{
+	void Start () {
 	
 	}
 	
 	// Update is called once per frame
-	void Update ()
-	{
+	void Update () {
 		if (transform.position.y < -100.0f)
 			Destroy (gameObject);
 	}
@@ -34,14 +30,6 @@ public class EnemyScript : MonoBehaviour
 			{
 				GetComponent<Collider2D> ().isTrigger = true;
 			}
-		}
-	}
-	
-	void OnTriggerEnter2D (Collider2D col)
-	{
-		if (col.gameObject.tag == "Weapon") {
-			GetComponent<Collider2D> ().isTrigger = true;
-			GetComponent<Rigidbody2D>().gravityScale = 1.0f;
 		}
 	}
 }
