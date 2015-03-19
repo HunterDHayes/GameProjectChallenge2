@@ -25,4 +25,9 @@ public class PlayButton : MonoBehaviour {
 	
 		Application.LoadLevel(levelToLoad)	;
 	}
+
+	public void SwitchToCredits()
+	{
+		Application.LoadLevel("Credits")	;
+	}
 }
