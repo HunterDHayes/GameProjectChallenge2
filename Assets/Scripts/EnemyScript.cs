@@ -29,6 +29,7 @@ public class EnemyScript : MonoBehaviour
 				col.gameObject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-impulseBack, impulseUp), ForceMode2D.Impulse);
 				Physics2D.IgnoreCollision (col.collider, GetComponent<Collider2D> ());
 				col.gameObject.GetComponent<PlayerMovement> ().KnockBack ();
+				col.gameObject.GetComponent<PlayerMovement>().StarPower();
 			} 
 			else 
 			{
