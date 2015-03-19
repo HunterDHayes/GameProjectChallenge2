@@ -33,6 +33,18 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+		bool jump = false;
+		bool attack = false;
+		if(Input.GetMouseButton(0))
+		{
+			if(Input.mousePosition.x > Screen.width / 2) {
+				attack = true;
+			}
+			else {
+				jump = true;
+			}
+		}
 
 		Vector3 position = this.transform.position;
 		position.x = Mathf.Lerp (this.transform.position.x, homePos.x + (-7.5f) * (this.currKnockBack / this.knockBackCount), Time.deltaTime * 4.0f);
@@ -49,7 +61,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.K))
 			this.KnockBack ();
 
-		float dAttack = Input.GetAxis("Jump");
+		float dAttack = Input.GetAxis("Jump") + (attack ? 1.0f : 0.0f);
 		
 		if(currAttackTime > 0.0f){
 			currAttackTime -= Time.deltaTime;
@@ -69,7 +81,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		
 	
-		float dY = Input.GetAxis("Vertical");
+		float dY = Input.GetAxis("Vertical") + (jump ? 1.0f : 0.0f);
 		
 		if(currJumpTime > 0.0f){
 			currJumpTime -= Time.deltaTime;
