@@ -17,6 +17,12 @@ public class PlayButton : MonoBehaviour {
 	
 	public void SwitchToGameplay()
 	{
+		if(levelToLoad == "Exit")
+		{
+			Application.Quit();
+			return;
+		}
+	
 		Application.LoadLevel(levelToLoad)	;
 	}
 }
