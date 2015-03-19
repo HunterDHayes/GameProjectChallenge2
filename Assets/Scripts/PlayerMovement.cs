@@ -21,18 +21,20 @@ public class PlayerMovement : MonoBehaviour {
 	public bool hasThePower = false;
 	public float starPowerDuration = 3.0f;
 	public float starPowerTimer = 0.0f;
+	
+	private Vector3 homePos;
 
 	// Use this for initialization
 	void Start () 
 	{
-
+		homePos = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 		Vector3 position = this.transform.position;
-		position.x = Mathf.Lerp (this.transform.position.x, (-7.5f) * (this.currKnockBack / this.knockBackCount), Time.deltaTime * 2.0f);
+		position.x = Mathf.Lerp (this.transform.position.x, homePos.x + (-7.5f) * (this.currKnockBack / this.knockBackCount), Time.deltaTime * 2.0f);
 		this.transform.position = position;
 
 		if (this.starPowerTimer > 0.0f) {
