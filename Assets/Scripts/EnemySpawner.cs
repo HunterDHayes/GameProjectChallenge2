@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour {
 			
 			if(num < 10){
 				NewObject = GameObject.Instantiate(enemiesToSpawn[1]);
-				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,Random.Range(4.5f, 6.5f));
+				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,Random.Range(3.0f, 5.0f));
 			}
 			else if(num < 20) {
 				NewObject = GameObject.Instantiate(enemiesToSpawn[2]);
