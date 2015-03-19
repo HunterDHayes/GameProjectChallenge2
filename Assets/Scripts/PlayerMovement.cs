@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () {
 
 		Vector3 position = this.transform.position;
-		position.x = Mathf.Lerp (this.transform.position.x, homePos.x + (-7.5f) * (this.currKnockBack / this.knockBackCount), Time.deltaTime * 2.0f);
+		position.x = Mathf.Lerp (this.transform.position.x, homePos.x + (-7.5f) * (this.currKnockBack / this.knockBackCount), Time.deltaTime * 4.0f);
 		this.transform.position = position;
 
 		if (this.starPowerTimer > 0.0f) {
@@ -91,16 +91,16 @@ public class PlayerMovement : MonoBehaviour {
 
 		Vector3 cameraPos = MainCamera.transform.position;
 		cameraPos.y = transform.position.y + 3.5f;
-		MainCamera.transform.position = cameraPos;
+		//MainCamera.transform.position = cameraPos;
 
 		if (MainCamera.transform.position.y > 5.0f) {
 			Vector3 pos = MainCamera.transform.position;
 			pos.y = 5.0f;
-			MainCamera.transform.position = pos;
+			//MainCamera.transform.position = pos;
 		} else if (MainCamera.transform.position.y < -5.0f) {
 			Vector3 pos = MainCamera.transform.position;
 			pos.y = -5.0f;
-			MainCamera.transform.position = pos;
+			//MainCamera.transform.position = pos;
 		}
 
 
