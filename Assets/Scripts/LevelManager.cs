@@ -48,7 +48,9 @@ public class LevelManager : MonoBehaviour
 				currentBlock = Instantiate (terrainBlocks [blockCounter % numBlocks], spawnPoint.transform.position, new Quaternion(0, 0, 0, 0)) as GameObject;
 				currentBlock.transform.SetParent(transform);
 				Vector3 pos = spawnPoint.transform.position;
-				pos.x -= .2f;
+
+				LevelScrollerScript script = (LevelScrollerScript)GetComponent<LevelScrollerScript>();
+				pos.x -= script.scrollSpeed * Time.deltaTime;
 				currentBlock.transform.position = pos;
 
 				Destroy(toDestroy);
@@ -59,7 +61,8 @@ public class LevelManager : MonoBehaviour
 				nextBlock = Instantiate (terrainBlocks [blockCounter % numBlocks], spawnPoint.transform.position, new Quaternion(0, 0, 0, 0)) as GameObject;
 				nextBlock.transform.SetParent(transform);
 				Vector3 pos = spawnPoint.transform.position;
-				pos.x -= .2f;
+				LevelScrollerScript script = (LevelScrollerScript)GetComponent<LevelScrollerScript>();
+				pos.x -= script.scrollSpeed * Time.deltaTime;
 				nextBlock.transform.position = pos;
 				Destroy(toDestroy);
 			}
