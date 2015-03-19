@@ -16,8 +16,8 @@ public class EnemyScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (transform.position.y < -100.0f)
-			Destroy (gameObject);
+		if (transform.position.y < -20.0f || transform.position.x < -20.0f)
+			Destroy (transform.parent.gameObject);
 	}
 	
 	void DeactivateAllColliders() {
