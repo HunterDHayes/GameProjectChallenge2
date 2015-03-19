@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		else{		
 			RaycastHit2D hit = Physics2D.Linecast(
-				new Vector2(transform.position.x, transform.position.y - 0.8f), 
+				new Vector2(transform.position.x, transform.position.y - 1.25f), 
 				new Vector2(transform.position.x, transform.position.y)
 			);
 			
