@@ -33,9 +33,21 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+		bool jump = false;
+		bool attack = false;
+		if(Input.GetMouseButton(0))
+		{
+			if(Input.mousePosition.x > Screen.width / 2) {
+				attack = true;
+			}
+			else {
+				jump = true;
+			}
+		}
 
 		Vector3 position = this.transform.position;
-		position.x = Mathf.Lerp (this.transform.position.x, homePos.x + (-7.5f) * (this.currKnockBack / this.knockBackCount), Time.deltaTime * 2.0f);
+		position.x = Mathf.Lerp (this.transform.position.x, homePos.x + (-7.5f) * (this.currKnockBack / this.knockBackCount), Time.deltaTime * 4.0f);
 		this.transform.position = position;
 
 		if (this.starPowerTimer > 0.0f) {
@@ -49,7 +61,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.K))
 			this.KnockBack ();
 
-		float dAttack = Input.GetAxis("Jump");
+		float dAttack = Input.GetAxis("Jump") + (attack ? 1.0f : 0.0f);
 		
 		if(currAttackTime > 0.0f){
 			currAttackTime -= Time.deltaTime;
@@ -69,7 +81,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		
 	
-		float dY = Input.GetAxis("Vertical");
+		float dY = Input.GetAxis("Vertical") + (jump ? 1.0f : 0.0f);
 		
 		if(currJumpTime > 0.0f){
 			currJumpTime -= Time.deltaTime;
@@ -91,16 +103,16 @@ public class PlayerMovement : MonoBehaviour {
 
 		Vector3 cameraPos = MainCamera.transform.position;
 		cameraPos.y = transform.position.y + 3.5f;
-		MainCamera.transform.position = cameraPos;
+		//MainCamera.transform.position = cameraPos;
 
 		if (MainCamera.transform.position.y > 5.0f) {
 			Vector3 pos = MainCamera.transform.position;
 			pos.y = 5.0f;
-			MainCamera.transform.position = pos;
+			//MainCamera.transform.position = pos;
 		} else if (MainCamera.transform.position.y < -5.0f) {
 			Vector3 pos = MainCamera.transform.position;
 			pos.y = -5.0f;
-			MainCamera.transform.position = pos;
+			//MainCamera.transform.position = pos;
 		}
 
 
@@ -112,6 +124,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (this.currKnockBack >= this.knockBackCount) {
 			// TODO Do death stuff here
+			int deaths = PlayerPrefs.GetInt("TotalDeaths");
+			PlayerPrefs.SetInt("TotalDeaths",deaths + 1);
 			Application.LoadLevel("LoseMenu");
 		}
 	}

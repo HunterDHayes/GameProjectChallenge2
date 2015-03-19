@@ -6,7 +6,7 @@ public class EnemyScript : MonoBehaviour
 
 	public float impulseUp;
 	public float impulseBack;
-	
+	public Sprite AlternateSprite = null;
 	// Use this for initialization
 	void Start ()
 	{
@@ -16,8 +16,8 @@ public class EnemyScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (transform.position.y < -100.0f)
-			Destroy (gameObject);
+		if (transform.position.y < -20.0f || transform.position.x < -20.0f)
+			Destroy (transform.parent.gameObject);
 	}
 	
 	void DeactivateAllColliders() {
@@ -56,8 +56,20 @@ public class EnemyScript : MonoBehaviour
 	
 	void OnTriggerEnter2D (Collider2D col)
 	{
-		if (col.gameObject.tag == "Weapon") {
+		if (col.gameObject.tag == "Weapon") 
+		{
 			DeactivateAllColliders();
+			int currentKillcount = PlayerPrefs.GetInt("TotalKillCount");
+			currentKillcount += 1;
+			PlayerPrefs.SetInt("TotalKillCount",currentKillcount);
+
+			if(AlternateSprite != null)
+			{
+				SpriteRenderer spriterenderer = GetComponent<SpriteRenderer>();
+				spriterenderer.sprite = AlternateSprite;
+			}
+
+			Debug.Log(currentKillcount.ToString());
 		}
 	}
 }

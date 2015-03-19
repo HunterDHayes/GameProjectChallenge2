@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour {
 			GameObject NewObject = null;
 		
 			//actual instantiation goes here
-			int num = Random.Range(0, 30);
+			int num = Random.Range(0, 40);
 			
 			if(num < 10){
 				NewObject = GameObject.Instantiate(enemiesToSpawn[1]);
@@ -36,6 +36,10 @@ public class EnemySpawner : MonoBehaviour {
 			}
 			else if(num < 20) {
 				NewObject = GameObject.Instantiate(enemiesToSpawn[2]);
+				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,3.0f);
+			}
+			else if(num < 30) {
+				NewObject = GameObject.Instantiate(enemiesToSpawn[3]);
 				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,3.0f);
 			}
 			else {
