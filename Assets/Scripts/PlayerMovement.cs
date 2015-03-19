@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	public GameObject sword;
 	public GameObject swordCollider;
+	public GameObject MainCamera;
 	public float swingRotation;
 	public float attackTime;
 	private float currAttackTime = 0.0f;
@@ -87,6 +88,22 @@ public class PlayerMovement : MonoBehaviour {
 				GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, dY * jumpImpulse), ForceMode2D.Impulse);
 			}
 		}
+
+		Vector3 cameraPos = MainCamera.transform.position;
+		cameraPos.y = transform.position.y + 3.5f;
+		MainCamera.transform.position = cameraPos;
+
+		if (MainCamera.transform.position.y > 5.0f) {
+			Vector3 pos = MainCamera.transform.position;
+			pos.y = 5.0f;
+			MainCamera.transform.position = pos;
+		} else if (MainCamera.transform.position.y < -5.0f) {
+			Vector3 pos = MainCamera.transform.position;
+			pos.y = -5.0f;
+			MainCamera.transform.position = pos;
+		}
+
+
 	}
 
 	public void KnockBack()
