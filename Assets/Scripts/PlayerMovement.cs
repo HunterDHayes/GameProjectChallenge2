@@ -88,11 +88,11 @@ public class PlayerMovement : MonoBehaviour {
 			sword.transform.rotation = Quaternion.AngleAxis(ratio * swingRotation, new Vector3(0.0f, 0.0f, 1.0f));
 		}
 		else {
-			swordCollider.GetComponent<BoxCollider2D>().enabled = false;
+			foreach(Collider2D col in swordCollider.GetComponents<Collider2D>()) col.enabled = false;
 		
 			if(dAttack > 0.0f) {
 				currAttackTime = attackTime;
-				swordCollider.GetComponent<BoxCollider2D>().enabled = true;
+				foreach(Collider2D col in swordCollider.GetComponents<Collider2D>()) col.enabled = true;
 			}
 		}
 		
