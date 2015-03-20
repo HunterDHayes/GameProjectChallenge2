@@ -89,11 +89,11 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		else{		
 			RaycastHit2D hit = Physics2D.Linecast(
-				new Vector2(transform.position.x, transform.position.y - 1.25f), 
+				new Vector2(transform.position.x, transform.position.y - 1.2f), 
 				new Vector2(transform.position.x, transform.position.y)
 			);
 			
-			if(dY > 0.0f && hit.collider.gameObject != gameObject && hit.collider.gameObject.layer != LayerMask.GetMask("Ground"))
+			if(dY > 0.0f && hit.collider.gameObject != gameObject && hit.collider.gameObject.tag == "Floor")
 			{
 				currJumpTime = jumpTime;
 				GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, dY * jumpImpulse), ForceMode2D.Impulse);
