@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour {
 	public GameObject MainCamera;
 	public float swingRotation;
 	public float attackTime;
+	private float lastAttack = 0.0f;
 	private float currAttackTime = 0.0f;
 	
 	public float currJumpTime = 0.0f;
@@ -109,11 +110,12 @@ public class PlayerMovement : MonoBehaviour {
 		else {
 			foreach(Collider2D col in swordCollider.GetComponents<Collider2D>()) col.enabled = false;
 		
-			if(dAttack > 0.0f) {
+			if(dAttack > 0.0f && lastAttack == 0.0f) {
 				currAttackTime = attackTime;
 				foreach(Collider2D col in swordCollider.GetComponents<Collider2D>()) col.enabled = true;
 			}
 		}
+		lastAttack = dAttack;
 		
 	
 		float dY = Input.GetAxis("Vertical") + (jump ? 1.0f : 0.0f);
