@@ -7,6 +7,7 @@ public class DisplayValues : MonoBehaviour {
 	public Text Distance;
 	public Text Deaths;
 	public Text EnemiesKilled;
+	public Text HighScore;
 
 	// Use this for initialization
 	void Start () 
@@ -17,6 +18,9 @@ public class DisplayValues : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		float score = PlayerPrefs.GetFloat("HighScore");
+		int scoreToDisplay = (int)score;
+		HighScore.text = scoreToDisplay.ToString ();
 
 		float distance = PlayerPrefs.GetFloat("TotalMeters");
 		int distToDisplay = (int)distance;

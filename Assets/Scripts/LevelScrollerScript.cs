@@ -14,7 +14,7 @@ public class LevelScrollerScript : MonoBehaviour {
 	public float maxScrollSpeed = 15.0f;
 	
 	public GameObject metersText;
-	private float metersCounter = 0.0f;
+	public float metersCounter = 0.0f;
 
 	// Use this for initialization
 	void Start () {

@@ -126,6 +126,18 @@ public class PlayerMovement : MonoBehaviour {
 			int deaths = PlayerPrefs.GetInt("TotalDeaths");
 			PlayerPrefs.SetInt("TotalDeaths",deaths + 1);
 			Application.LoadLevel("LoseMenu");
+
+			float currentHighScore = PlayerPrefs.GetFloat("HighScore");
+			float currentlength = 0.0f;
+			GameObject floor = GameObject.Find("FLOORS");
+			currentlength = floor.GetComponent<LevelScrollerScript>().metersCounter;
+			if (currentlength > currentHighScore) 
+			{
+				PlayerPrefs.SetFloat("HighScore",currentlength);
+			}
+
+
+
 		}
 	}
 
