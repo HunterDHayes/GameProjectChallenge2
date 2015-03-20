@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class PlayerMovement : MonoBehaviour {
 
 	public float jumpTime;
@@ -23,7 +24,8 @@ public class PlayerMovement : MonoBehaviour {
 	public bool hasThePower = false;
 	public float starPowerDuration = 3.0f;
 	public float starPowerTimer = 0.0f;
-	
+	public ParticleSystem StarEffect = null;
+
 	private Vector3 homePos;
 
 	// Use this for initialization
@@ -49,6 +51,10 @@ public class PlayerMovement : MonoBehaviour {
 			
 			sp.color = color;
 		}
+
+		if(!hasThePower && StarEffect.isPlaying)
+		   StarEffect.Stop();
+
 
 
 		bool jump = false;
@@ -168,6 +174,11 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		this.starPowerTimer = this.starPowerDuration;
 		this.hasThePower = true;
+		if (StarEffect != null) 
+		{
+			if(StarEffect.isStopped)
+			StarEffect.Play();
+		}
 		//this.gameObject.GetComponent<SpriteRenderer> ().color = Color.yellow;
 	}
 }
