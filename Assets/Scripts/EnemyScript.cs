@@ -68,8 +68,6 @@ public class EnemyScript : MonoBehaviour
 				SpriteRenderer spriterenderer = GetComponent<SpriteRenderer>();
 				spriterenderer.sprite = AlternateSprite;
 			}
-
-			Debug.Log(currentKillcount.ToString());
 		}
 	}
 }

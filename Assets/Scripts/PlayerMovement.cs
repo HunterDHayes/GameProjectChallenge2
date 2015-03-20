@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float jumpTime;
 	public float jumpForce;
 	public float jumpImpulse;
+	public Color startColor;
 	
 	public GameObject sword;
 	public GameObject swordCollider;
@@ -33,7 +34,23 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		float percentKnockedBack;
+		percentKnockedBack = currKnockBack / knockBackCount;
 		
+		float red = percentKnockedBack * 1.0f;
+		
+		SpriteRenderer[] sprite = GetComponentsInChildren<SpriteRenderer>();
+		foreach (SpriteRenderer sp in sprite) 
+		{
+			Color color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
+			color.g =  startColor.g - red;
+			color.b =  startColor.b - red;
+			
+			sp.color = color;
+		}
+
+
 		bool jump = false;
 		bool attack = false;		
 		for(int i = 0; i < Input.touchCount; i++) {
@@ -120,6 +137,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void KnockBack()
 	{
 		this.currKnockBack++;
+
 
 		if (this.currKnockBack >= this.knockBackCount) {
 			// TODO Do death stuff here
