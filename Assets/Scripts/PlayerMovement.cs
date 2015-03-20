@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () 
 	{
 		homePos = transform.position;
+		transform.position -= new Vector3(9.0f, 0.0f, 0.0f);
 	}
 	
 	// Update is called once per frame
