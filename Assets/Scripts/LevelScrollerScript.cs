@@ -34,7 +34,7 @@ public class LevelScrollerScript : MonoBehaviour {
 		
 		metersCounter += scrollSpeed * Time.deltaTime;
 		float currentmetercount = PlayerPrefs.GetFloat ("TotalMeters");
-		PlayerPrefs.SetFloat("TotalMeters",metersCounter + currentmetercount);
+		PlayerPrefs.SetFloat("TotalMeters",scrollSpeed * Time.deltaTime + currentmetercount);
 		
 		for(int i = 0; i < transform.childCount; i++)
 		{
