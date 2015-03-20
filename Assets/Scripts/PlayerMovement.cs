@@ -185,9 +185,9 @@ public class PlayerMovement : MonoBehaviour {
 		this.currKnockBack = Mathf.Max (0.0f, this.currKnockBack - 1.0f);
 	}
 
-	public void StarPower()
+	public void StarPower(float duration = 0.0f)
 	{
-		this.starPowerTimer = this.starPowerDuration;
+		this.starPowerTimer = duration == 0.0f ? this.starPowerDuration : duration;
 		this.hasThePower = true;
 		if (StarEffect != null) 
 		{
