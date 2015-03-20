@@ -68,6 +68,19 @@ public class EnemyScript : MonoBehaviour
 				SpriteRenderer spriterenderer = GetComponent<SpriteRenderer>();
 				spriterenderer.sprite = AlternateSprite;
 			}
+			GameObject soundManager = GameObject.FindGameObjectWithTag("SoundManager");
+			
+			if (soundManager)
+			{
+					if(transform.parent.name == "Enemy1(Clone)")
+					{
+					soundManager.SendMessage("PlaySfx", "Howl_1_B");
+				}else if(transform.parent.name == "EnemyFlying(Clone)"){
+					soundManager.SendMessage("PlaySfx", "Bird_BeingHit1");
+				}else if(transform.parent.name == "Snake(Clone)"){
+					soundManager.SendMessage("PlaySfx", "Snake_BeingHit2");
+				}
+				         }
 		}
 	}
 }

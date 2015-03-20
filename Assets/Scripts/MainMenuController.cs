@@ -53,11 +53,6 @@ public class MainMenuController : MonoBehaviour
         Application.LoadLevel(name);
     }
 
-	public void ChangePlane()
-	{
-		PlayerChoice.sprite = CharacterChoices [CharacterChoice];
-		PlayerPrefs.SetInt ("PlayerChoice", CharacterChoice);
-	}
 
     public void ExitGame()
     {
@@ -155,22 +150,5 @@ public class MainMenuController : MonoBehaviour
     }
 
 	//When called, moves the character selection one step forward through the array, with loop around.
-	public void CharacterChoiceRight()
-	{
-		if (CharacterChoice < 3)
-			CharacterChoice = CharacterChoice + 1;
-		else
-			CharacterChoice = 0;
-		ChangePlane ();
-	}
 
-	//When called, moves the character selection one step back through the array, with loop around.
-	public void CharacterChoiceLeft()
-	{
-		if (CharacterChoice > 0)
-			CharacterChoice = CharacterChoice - 1;
-		else
-			CharacterChoice = 3;
-		ChangePlane ();
-	}
 }

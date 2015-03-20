@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class SetFirstTimeStartUps : MonoBehaviour {
@@ -9,6 +9,9 @@ public class SetFirstTimeStartUps : MonoBehaviour {
 		if (PlayerPrefs.GetInt ("FirstTimeStartUP") == 0) {
 			PlayerPrefs.SetInt ("FirstTimeStartUP", 1);
 		} 
+		GameObject soundManager = GameObject.FindGameObjectWithTag("SoundManager");
+		if (soundManager)
+			soundManager.SendMessage("PlayMusic", "MainMenu");
 	}
 
 }
