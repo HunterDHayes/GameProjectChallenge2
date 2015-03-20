@@ -40,6 +40,11 @@ public class EnemyScript : MonoBehaviour
 	{
 		if (col.gameObject.tag == "Player") 
 		{
+			GameObject soundManager = GameObject.FindGameObjectWithTag("SoundManager");
+			
+			if (soundManager) {
+				soundManager.SendMessage("PlaySfx", "BeingHit1_B");
+			}
 			if (col.gameObject.GetComponent<PlayerMovement> ().hasThePower == false) 
 			{
 				col.gameObject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-impulseBack, impulseUp), ForceMode2D.Impulse);

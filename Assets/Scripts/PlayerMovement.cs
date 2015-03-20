@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour {
 			this.KnockBack ();
 
 		float dAttack = Input.GetAxis("Jump") + (attack ? 1.0f : 0.0f);
-		
+	
 		if(currAttackTime > 0.0f){
 			currAttackTime -= Time.deltaTime;
 			
@@ -107,6 +107,7 @@ public class PlayerMovement : MonoBehaviour {
 			if(ratio > 1.0f) ratio = 2.0f - ratio;
 			
 			sword.transform.rotation = Quaternion.AngleAxis(ratio * swingRotation, new Vector3(0.0f, 0.0f, 1.0f));
+		
 		}
 		else {
 			foreach(Collider2D col in swordCollider.GetComponents<Collider2D>()) col.enabled = false;
@@ -114,7 +115,13 @@ public class PlayerMovement : MonoBehaviour {
 			if(dAttack > 0.0f && lastAttack == 0.0f) {
 				currAttackTime = attackTime;
 				foreach(Collider2D col in swordCollider.GetComponents<Collider2D>()) col.enabled = true;
+				GameObject soundManager = GameObject.FindGameObjectWithTag("SoundManager");
+				
+				if (soundManager) {
+					soundManager.SendMessage("PlaySfx", "Female_Attack1");
+				}
 			}
+
 		}
 		lastAttack = dAttack;
 		
@@ -184,6 +191,11 @@ public class PlayerMovement : MonoBehaviour {
 	public void HealthUp()
 	{
 		this.currKnockBack = Mathf.Max (0.0f, this.currKnockBack - 1.0f);
+		GameObject soundManager = GameObject.FindGameObjectWithTag("SoundManager");
+		
+		if (soundManager) {
+			soundManager.SendMessage("PlaySfx", "Ham");
+		}
 	}
 
 	public void StarPower(float duration = 0.0f)
