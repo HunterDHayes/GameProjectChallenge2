@@ -11,16 +11,19 @@ public class Storyboard : MonoBehaviour
 	void Start ()
 	{
 		for (int i = 1; i < images.Length; i++) {
-			images [i].gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+			images [i].gameObject.SetActive(false);
+//			images [i].gameObject.GetComponent<SpriteRenderer> ().enabled = false;
 		}
-		images [this.currentImage].gameObject.GetComponent<SpriteRenderer> ().enabled = true;
+		images [currentImage].gameObject.SetActive(true);
+//		images [this.currentImage].gameObject.GetComponent<SpriteRenderer> ().enabled = true;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		if (Input.anyKeyDown) {
-			images [this.currentImage].gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+			images [currentImage].gameObject.SetActive(false);
+//			images [this.currentImage].gameObject.GetComponent<SpriteRenderer> ().enabled = false;
 			this.currentImage++;
 
 			if(this.currentImage == images.Length){
@@ -28,7 +31,8 @@ public class Storyboard : MonoBehaviour
 				return;
 			}
 
-			images [this.currentImage].gameObject.GetComponent<SpriteRenderer> ().enabled = true;
+//			images [this.currentImage].gameObject.GetComponent<SpriteRenderer> ().enabled = true;
+			images [currentImage].gameObject.SetActive(true);
 		}
 	}
 }
