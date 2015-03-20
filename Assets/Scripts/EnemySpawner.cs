@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour {
 	public float minSpawnTime;
 	public float maxSpawnTime;
 	private float currSpawnTime = 0.0f;
+	public int NumOfSpawns = 0;
 	
 	public float spawnLead = 0.0f;
 
@@ -28,28 +29,33 @@ public class EnemySpawner : MonoBehaviour {
 			GameObject NewObject = null;
 		
 			//actual instantiation goes here
-			int num = Random.Range(0, 90);
+			int num = Random.Range(0,NumOfSpawns);
 
-			if(num < 2) {
+			if(num == 0) {
 				NewObject = GameObject.Instantiate(enemiesToSpawn[4]);
 				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,3.0f);
-			} else if(num < 10) {
+			} else if(num == 1) {
 				NewObject = GameObject.Instantiate(enemiesToSpawn[5]);
 				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,3.0f);
-			} else if(num < 30){
+			} else if(num == 2){
 				NewObject = GameObject.Instantiate(enemiesToSpawn[1]);
 				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,Random.Range(3.0f, 5.0f));
 			}
-			else if(num < 50) {
+			else if(num == 3) {
 				NewObject = GameObject.Instantiate(enemiesToSpawn[2]);
 				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,3.0f);
 			}
-			else if(num < 70) {
+			else if(num == 4) {
 				NewObject = GameObject.Instantiate(enemiesToSpawn[3]);
 				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,3.0f);
 			}
-			else {
+			else if(num == 5){
 				NewObject = GameObject.Instantiate(enemiesToSpawn[0]);
+				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,3.0f);
+			}
+			else
+			{
+				NewObject = GameObject.Instantiate(enemiesToSpawn[6]);
 				NewObject.transform.position = new Vector3(mainCamera.transform.position.x + spawnLead,3.0f);
 			}
 			
