@@ -21,8 +21,8 @@ public class EnemySpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () 
-	{
-		currSpawnTime -= Time.deltaTime;
+	{	
+		currSpawnTime -= Time.deltaTime * (GetComponent<LevelScrollerScript>().scrollSpeed / 5.0f);
 		if (currSpawnTime <= 0.0f) 
 		{
 			GameObject NewObject = null;
