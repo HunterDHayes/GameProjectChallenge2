@@ -16,6 +16,22 @@ public class StaticHazardScript : MonoBehaviour {
 			Destroy (gameObject);
 	}
 	
+	void DeactivateAllColliders() {
+		for(int i = 0; i < transform.parent.childCount; i++) {
+			Collider2D col = transform.parent.GetChild(i).GetComponent<Collider2D>();
+			Rigidbody2D rb = transform.parent.GetChild(i).GetComponent<Rigidbody2D>();
+			if(col) col.isTrigger = true;
+			if(rb) rb.gravityScale = 1.0f;
+		}
+	}
+	
+	void IgnoreAllColliders(Collider2D other) {
+		for(int i = 0; i < transform.parent.childCount; i++) {
+			Collider2D col = transform.parent.GetChild(i).GetComponent<Collider2D>();
+			if(col) Physics2D.IgnoreCollision(other, col);
+		}
+	}
+	
 	void OnCollisionEnter2D (Collision2D col)
 	{
 		if (col.gameObject.tag == "Player") 
@@ -23,13 +39,14 @@ public class StaticHazardScript : MonoBehaviour {
 			if (col.gameObject.GetComponent<PlayerMovement> ().hasThePower == false) 
 			{
 				col.gameObject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-impulseBack, impulseUp), ForceMode2D.Impulse);
-				Physics2D.IgnoreCollision (col.collider, GetComponent<Collider2D> ());
+				IgnoreAllColliders(col.collider);
 				col.gameObject.GetComponent<PlayerMovement> ().KnockBack ();
 				col.gameObject.GetComponent<PlayerMovement>().StarPower();
 			} 
 			else 
 			{
-				GetComponent<Collider2D> ().isTrigger = true;
+				//DeactivateAllColliders();
+				IgnoreAllColliders(col.collider);
 			}
 		}
 	}
