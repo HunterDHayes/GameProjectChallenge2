@@ -27,6 +27,10 @@ public class PlayerMovement : MonoBehaviour {
 	public ParticleSystem StarEffect = null;
 
 	private Vector3 homePos;
+	
+	public float blinkTime = 0.0f;
+	private float currBlink = 0.0f;
+	private bool blinkVisible = false;
 
 	// Use this for initialization
 	void Start () 
@@ -36,6 +40,12 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	
+		currBlink -= Time.deltaTime;
+		if(currBlink <= 0.0f) {
+			blinkVisible = !blinkVisible;
+			currBlink = blinkTime;
+		}
 
 		float percentKnockedBack;
 		percentKnockedBack = currKnockBack / knockBackCount;
@@ -51,10 +61,13 @@ public class PlayerMovement : MonoBehaviour {
 			
 			sp.color = color;
 		}
-
-		if(!hasThePower && StarEffect.isPlaying)
-		   StarEffect.Stop();
-
+		
+		if(hasThePower) {
+			foreach(SpriteRenderer ren in GetComponentsInChildren<SpriteRenderer>()) ren.enabled = blinkVisible;
+		}
+		else {
+			foreach(SpriteRenderer ren in GetComponentsInChildren<SpriteRenderer>()) ren.enabled = true;
+		}
 
 
 		bool jump = false;
@@ -176,8 +189,12 @@ public class PlayerMovement : MonoBehaviour {
 		this.hasThePower = true;
 		if (StarEffect != null) 
 		{
-			if(StarEffect.isStopped)
-			StarEffect.Play();
+			//if(StarEffect.isStopped)
+			//StarEffect.Play();
+			//GetComponentInChildren<SpriteRenderer>().enabled = blinkVisible;
+		}
+		else {
+			//GetComponentInChildren<SpriteRenderer>().enabled = true;
 		}
 		//this.gameObject.GetComponent<SpriteRenderer> ().color = Color.yellow;
 	}
