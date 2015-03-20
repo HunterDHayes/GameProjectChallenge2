@@ -192,7 +192,6 @@ public class PlayerMovement : MonoBehaviour {
 		this.hasThePower = true;
 		if (StarEffect != null) 
 		{
-			//if(StarEffect.isStopped)
 			//StarEffect.Play();
 			//GetComponentInChildren<SpriteRenderer>().enabled = blinkVisible;
 		}
