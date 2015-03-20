@@ -35,10 +35,9 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () {
 		
 		bool jump = false;
-		bool attack = false;
-		if(Input.GetMouseButton(0))
-		{
-			if(Input.mousePosition.x > Screen.width / 2) {
+		bool attack = false;		
+		for(int i = 0; i < Input.touchCount; i++) {
+			if(Input.GetTouch(i).position.x > Screen.width / 2) {
 				attack = true;
 			}
 			else {
