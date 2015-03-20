@@ -22,8 +22,10 @@ public class MainMenuController : MonoBehaviour
 
         GameObject soundManager = GameObject.FindGameObjectWithTag("SoundManager");
 
-        if (soundManager)
-            soundManager.SendMessage("PlayMusic", "MainMenu");
+        if (soundManager) {
+			soundManager.SendMessage ("StopAllMusic");
+			soundManager.SendMessage ("PlayMusic", "MainMenu");
+		}
 
 		PlayerPrefs.SetInt ("PlayerChoice", 0);
     }
