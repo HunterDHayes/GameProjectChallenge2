@@ -32,5 +32,8 @@ public class DisplayValues : MonoBehaviour {
 		int deaths = PlayerPrefs.GetInt ("TotalDeaths");
 		Deaths.text = deaths.ToString ();
 
+		if (Input.GetKeyUp (KeyCode.Escape)) {
+			Application.LoadLevel("MainMenu");
+		}
 	}
 }
